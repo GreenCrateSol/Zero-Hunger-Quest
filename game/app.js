@@ -176,6 +176,11 @@ function resetGame() {
   score = 100;
   selectedOption = null;
   answerSubmitted = false;
+  hintUsed = false;
+  var btn = document.getElementById('btnLifeline');
+  if (btn) { btn.classList.remove('used'); btn.disabled = false; }
+  var face = document.getElementById('lifeline-face');
+  if (face) face.textContent = '💡 Ask for Help';
   updateScoreBadge();
   showScreen("landing");
 }
