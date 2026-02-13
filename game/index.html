@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zero Hunger Quest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main>
+
+  <!-- SPLASH 1: SFG Technologies -->
+  <section id="splash1" class="screen active">
+    <div class="splash-glow"></div>
+    <div class="splash-content">
+      <p class="splash-label" data-testid="text-splash-sfg-label">Created by</p>
+      <div class="splash-logo-ring splash-logo-ring-big">
+        <img src="../images/sfg-logo.png" alt="SFG Technologies" class="splash-logo-img splash-logo-img-big" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SPLASH 2: GreenCrate INOV8 -->
+  <section id="splash2" class="screen">
+    <div class="splash-glow"></div>
+    <div class="splash-content">
+      <p class="splash-label" data-testid="text-splash-gcs-label">Developed by</p>
+      <div class="splash-logo-ring splash-logo-ring-big">
+        <img src="../images/gcs-logo.png" alt="GreenCrate INOV8" class="splash-logo-img splash-logo-img-big" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TITLE / LANDING -->
+  <section id="landing" class="screen">
+    <div class="landing-hero">
+      <img src="../images/logo.png?v=2" alt="Zero Hunger Quest" class="hero-logo hero-logo-bigger" data-testid="img-logo-hero" />
+      <p class="landing-subtitle" data-testid="text-welcome">Be Inspired...Win Prizes</p>
+      <div class="sfg-presented-badge" data-testid="badge-sfg-presented">
+        <img src="../images/sfg-logo.png" alt="SFG Technologies" class="sfg-badge-logo" />
+        <span>Presented by SFG Technologies</span>
+      </div>
+    </div>
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="startGame()" data-testid="button-start">
+        <span class="african-btn-shadow primary"></span>
+        <span class="african-btn-face primary">START QUEST</span>
+      </button>
+    </div>
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="showScreen('about')" data-testid="nav-about">
+        <span class="african-btn-shadow secondary"></span>
+        <span class="african-btn-face secondary">ABOUT US</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- INTRO VIDEO: Meet Your Host -->
+  <section id="introVideo" class="screen">
+    <button class="back-link-light" onclick="showScreen('landing')" data-testid="button-back-home-intro">&larr; Back to Home</button>
+    <h2 class="intro-title" data-testid="text-intro-title">Meet Your Host</h2>
+    <div class="host-panel">
+      <div class="host-panel-header">
+        <div class="host-panel-icon">&#9654;</div>
+        <h3>Host Panel</h3>
+      </div>
+      <div class="host-video-placeholder">
+        <div class="host-play-circle">&#9654;</div>
+        <p class="host-video-label">Host Introduction Video</p>
+        <p class="host-video-sub">Video coming soon</p>
+      </div>
+      <div class="host-message">
+        <p data-testid="text-host-message">"Welcome to Zero Hunger Quest! I'm your host, and I'll guide you through this exciting journey to become a changemaker..."</p>
+      </div>
+    </div>
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="showScreen('rulesVideo')" data-testid="button-continue-intro">
+        <span class="african-btn-shadow primary"></span>
+        <span class="african-btn-face primary">CONTINUE</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- WIREFRAME 3: Rules & Scoring Video -->
+  <section id="rulesVideo" class="screen">
+    <button class="back-link-light" onclick="showScreen('landing')" data-testid="button-back-home-rules">&larr; Back to Home</button>
+    <h2 class="rules-title" data-testid="text-rules-title">How to Play</h2>
+
+    <div class="rules-panel" data-testid="panel-rules">
+      <div class="rules-panel-header">
+        <div class="rules-panel-icon">&#128203;</div>
+        <h3>Rules &amp; Scoring Panel</h3>
+      </div>
+      <div class="rules-video-placeholder" data-testid="video-rules-placeholder">
+        <div class="rules-play-circle">&#9654;</div>
+        <p class="rules-video-label">[EMBEDDED VIDEO]</p>
+        <p class="rules-video-sub">Rules &amp; Scoring Explanation</p>
+        <p class="rules-video-note">No visible controls &bull; Auto-plays</p>
+        <div class="rules-video-bar"></div>
+      </div>
+      <div class="quick-rules-box">
+        <p class="quick-rules-label" data-testid="text-quick-rules-label">QUICK RULES:</p>
+        <ul class="quick-rules-list">
+          <li data-testid="text-rule-0">Answer all questions to build your score</li>
+          <li data-testid="text-rule-1">+10 points for each correct answer</li>
+          <li data-testid="text-rule-2">-15 points for each wrong answer (retry allowed)</li>
+          <li data-testid="text-rule-3">Your % score determines prize draw entries</li>
+          <li data-testid="text-rule-4">Higher score = more entries into the monthly draw!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="showQuestion()" data-testid="button-start-game">
+        <span class="african-btn-shadow primary"></span>
+        <span class="african-btn-face primary">START GAME</span>
+      </button>
+    </div>
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="showQuestion()" data-testid="button-skip-video">
+        <span class="african-btn-shadow skip"></span>
+        <span class="african-btn-face skip">SKIP VIDEO</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- WIREFRAME 4: Question Screen -->
+  <section id="question1" class="screen">
+    <button class="back-link-light" onclick="showScreen('landing')" data-testid="button-back-home-q1">&larr; Back to Home</button>
+
+    <div class="q-header">
+      <div class="q-counter-badge" data-testid="text-q-counter">Question 1 of 15</div>
+      <div class="q-score-badge" id="currentScore" data-testid="text-current-score">100 pts</div>
+    </div>
+
+    <div class="q-action-buttons">
+      <button class="q-action-btn" data-testid="button-lifeline">
+        <span class="q-action-shadow"></span>
+        <span class="q-action-face">&#128161; Ask for Help</span>
+      </button>
+      <button class="q-action-btn" data-testid="button-info-panel">
+        <span class="q-action-shadow"></span>
+        <span class="q-action-face">&#128218; Info Panel</span>
+      </button>
+    </div>
+
+    <div class="q-value-box">
+      <div class="q-value-label">Question Value</div>
+      <div class="q-value-amount" data-testid="text-question-value">100 points</div>
+    </div>
+
+    <div class="q-text-box">
+      <p data-testid="text-question">
+        What are some of the biggest reasons growing food at home helps fight hunger?
+      </p>
+    </div>
+
+    <div class="q-options" id="options-list">
+      <button class="q-option" onclick="selectAnswer(0)" data-testid="button-option-0" id="opt-0">
+        <span class="q-option-shadow"></span>
+        <span class="q-option-face">
+          <span class="q-letter-badge" id="letter-0">A</span>
+          <span class="q-option-text">It can be very cheap to grow food</span>
+        </span>
+      </button>
+      <button class="q-option" onclick="selectAnswer(1)" data-testid="button-option-1" id="opt-1">
+        <span class="q-option-shadow"></span>
+        <span class="q-option-face">
+          <span class="q-letter-badge" id="letter-1">B</span>
+          <span class="q-option-text">Higher nutritional value</span>
+        </span>
+      </button>
+      <button class="q-option" onclick="selectAnswer(2)" data-testid="button-option-2" id="opt-2">
+        <span class="q-option-shadow"></span>
+        <span class="q-option-face">
+          <span class="q-letter-badge" id="letter-2">C</span>
+          <span class="q-option-text">Control chemical use</span>
+        </span>
+      </button>
+      <button class="q-option" onclick="selectAnswer(3)" data-testid="button-option-3" id="opt-3">
+        <span class="q-option-shadow"></span>
+        <span class="q-option-face">
+          <span class="q-letter-badge" id="letter-3">D</span>
+          <span class="q-option-text">All of the above</span>
+        </span>
+      </button>
+    </div>
+
+    <p id="feedback" data-testid="text-feedback"></p>
+
+    <div class="african-btn-wrap">
+      <button class="african-btn" id="submitBtn" onclick="submitAnswer()" data-testid="button-submit-answer" disabled>
+        <span class="african-btn-shadow primary"></span>
+        <span class="african-btn-face primary">SUBMIT ANSWER</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- SCORE -->
+  <section id="scoreScreen" class="screen">
+    <button class="back-link-light" onclick="resetGame()" data-testid="button-back-home-score">&larr; Back to Home</button>
+    <h2 class="result-title" data-testid="text-result-title">Your Score</h2>
+    <div class="score-result-card">
+      <p id="scoreText" data-testid="text-final-score"></p>
+      <p id="percentText" data-testid="text-percent"></p>
+    </div>
+
+    <div class="draw-entries-panel" data-testid="panel-draw-entries">
+      <p class="draw-entries-label">Monthly Prize Draw</p>
+      <p class="draw-entries-value" id="drawEntriesText" data-testid="text-draw-entries"></p>
+      <p class="draw-entries-sub">into this month's prize draw</p>
+    </div>
+
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="submitEntry()" data-testid="button-submit-entry">
+        <span class="african-btn-shadow primary"></span>
+        <span class="african-btn-face primary">SUBMIT MY ENTRY</span>
+      </button>
+    </div>
+
+    <h3 class="share-heading" data-testid="text-share-heading">Share with Friends</h3>
+    <div class="share-grid" id="shareGrid">
+      <a class="share-btn share-whatsapp" href="#" target="_blank" data-testid="link-share-whatsapp">WhatsApp</a>
+      <a class="share-btn share-facebook" href="#" target="_blank" data-testid="link-share-facebook">Facebook</a>
+      <a class="share-btn share-tiktok" href="#" target="_blank" data-testid="link-share-tiktok">TikTok</a>
+      <a class="share-btn share-instagram" href="#" target="_blank" data-testid="link-share-instagram">Instagram</a>
+      <a class="share-btn share-x" href="#" target="_blank" data-testid="link-share-x">X</a>
+      <a class="share-btn share-email" href="#" data-testid="link-share-email">Email</a>
+    </div>
+
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="resetGame()" data-testid="button-play-again">
+        <span class="african-btn-shadow secondary"></span>
+        <span class="african-btn-face secondary">PLAY AGAIN</span>
+      </button>
+    </div>
+
+    <div class="african-btn-wrap">
+      <button class="african-btn" onclick="rateGame()" data-testid="button-rate-game">
+        <span class="african-btn-shadow secondary"></span>
+        <span class="african-btn-face secondary">RATE THE GAME</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about" class="screen">
+    <button class="back-link" onclick="showScreen('landing')" data-testid="button-back-home-about">&larr; Back to Home</button>
+    <h2 data-testid="text-about-heading">About Us</h2>
+    <div class="rules-video-placeholder" data-testid="video-about">
+      <div class="rules-play-circle">&#9654;</div>
+      <p class="rules-video-label">[EMBEDDED VIDEO]</p>
+      <p class="rules-video-sub">About Us Narration</p>
+      <p class="rules-video-note">Video coming soon</p>
+      <div class="rules-video-bar"></div>
+    </div>
+
+    <p class="collaborators-heading promoters-heading">Project Promoters</p>
+    <div class="collaborators-grid">
+
+      <div class="collab-card" data-testid="card-collaborator-0">
+        <div class="collab-accent" style="background:#2f9e44"></div>
+        <div class="collab-body">
+          <div class="collab-header">
+            <p class="collab-name">Gauteng Dept of Agriculture</p>
+            <span class="collab-badge collab-badge-coming" data-testid="badge-coming-0">COMING SOON</span>
+          </div>
+          <div class="collab-prize-box">
+            <p class="collab-prize-label">February 2026 Prize</p>
+            <p class="collab-prize-value">Win a Seed Starter Kit</p>
+          </div>
+          <div class="collab-actions">
+            <span class="collab-play-btn collab-play-disabled" data-testid="link-play-game-0">Play Game</span>
+            <a href="https://www.gauteng.gov.za" target="_blank" class="collab-website-btn" style="border-color:#2f9e44;color:#2f9e44" data-testid="link-website-0">Visit Website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="collab-card" data-testid="card-collaborator-1">
+        <div class="collab-accent" style="background:#1877f2"></div>
+        <div class="collab-body">
+          <div class="collab-header">
+            <p class="collab-name">Dept of Social Development EC</p>
+            <span class="collab-badge collab-badge-coming" data-testid="badge-coming-1">COMING SOON</span>
+          </div>
+          <div class="collab-prize-box">
+            <p class="collab-prize-label">February 2026 Prize</p>
+            <p class="collab-prize-value">Win a Food Hamper</p>
+          </div>
+          <div class="collab-actions">
+            <span class="collab-play-btn collab-play-disabled" data-testid="link-play-game-1">Play Game</span>
+            <a href="https://www.dsd.gov.za" target="_blank" class="collab-website-btn" style="border-color:#1877f2;color:#1877f2" data-testid="link-website-1">Visit Website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="collab-card" data-testid="card-collaborator-2">
+        <div class="collab-accent" style="background:#e67700"></div>
+        <div class="collab-body">
+          <div class="collab-header">
+            <p class="collab-name">Siyoyisile Indlala Community Farm</p>
+            <span class="collab-badge collab-badge-coming" data-testid="badge-coming-2">COMING SOON</span>
+          </div>
+          <div class="collab-prize-box">
+            <p class="collab-prize-label">February 2026 Prize</p>
+            <p class="collab-prize-value">Win a Garden Toolkit</p>
+          </div>
+          <div class="collab-actions">
+            <span class="collab-play-btn collab-play-disabled" data-testid="link-play-game-2">Play Game</span>
+            <a href="#" target="_blank" class="collab-website-btn" style="border-color:#e67700;color:#e67700" data-testid="link-website-2">Visit Website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="collab-card" data-testid="card-collaborator-3">
+        <div class="collab-accent" style="background:#c2255c"></div>
+        <div class="collab-body">
+          <div class="collab-header">
+            <p class="collab-name">HART</p>
+            <span class="collab-badge collab-badge-coming" data-testid="badge-coming-3">COMING SOON</span>
+          </div>
+          <div class="collab-prize-box">
+            <p class="collab-prize-label">February 2026 Prize</p>
+            <p class="collab-prize-value">Win a Nutrition Guide</p>
+          </div>
+          <div class="collab-actions">
+            <span class="collab-play-btn collab-play-disabled" data-testid="link-play-game-3">Play Game</span>
+            <a href="#" target="_blank" class="collab-website-btn" style="border-color:#c2255c;color:#c2255c" data-testid="link-website-3">Visit Website</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
