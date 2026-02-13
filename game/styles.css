@@ -1129,3 +1129,211 @@ video {
 
 #feedback.correct { color: #66bb6a; }
 #feedback.wrong { color: #ef5350; }
+
+/* ── Host Mini Panel ── */
+.host-mini-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0,0,0,0.3);
+  border: 2px solid rgba(47,158,68,0.4);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.host-mini-video {
+  width: 5rem;
+  height: 5rem;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.4);
+  border: 2px solid rgba(47,158,68,0.3);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.host-mini-play {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255,212,59,0.2);
+  border: 2px solid rgba(255,212,59,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd43b;
+  font-size: 0.75rem;
+}
+
+.host-mini-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(47,158,68,0.4);
+}
+
+.host-mini-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffd43b;
+  margin-bottom: 0.125rem;
+}
+
+.host-mini-quote {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── Popup Overlays ── */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.popup-overlay.active {
+  display: flex;
+}
+
+.popup-card {
+  background: #1a2a3a;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  max-width: 22rem;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: popIn 0.25s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.popup-hint { border: 2px solid rgba(255,212,59,0.4); }
+.popup-info { border: 2px solid rgba(47,158,68,0.4); }
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.popup-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.hint-icon { background: rgba(255,212,59,0.2); border: 1px solid rgba(255,212,59,0.4); }
+.info-icon { background: rgba(47,158,68,0.2); border: 1px solid rgba(47,158,68,0.4); }
+
+.popup-title {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.hint-title { color: #ffd43b; }
+.info-title { color: #66bb6a; }
+
+.popup-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.popup-close:hover { color: #fff; }
+
+.popup-body {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+
+.popup-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.popup-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup-facts li {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  margin-bottom: 0.625rem;
+}
+
+.fact-check {
+  color: #66bb6a;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.popup-btn {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.hint-btn {
+  background: rgba(255,212,59,0.2);
+  border: 1px solid rgba(255,212,59,0.3);
+  color: #ffd43b;
+}
+.hint-btn:hover { background: rgba(255,212,59,0.3); }
+
+.info-btn {
+  background: rgba(47,158,68,0.2);
+  border: 1px solid rgba(47,158,68,0.3);
+  color: #66bb6a;
+}
+.info-btn:hover { background: rgba(47,158,68,0.3); }
+
+/* ── Lifeline Used State ── */
+.q-action-btn.used {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

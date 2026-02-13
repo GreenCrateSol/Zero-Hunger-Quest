@@ -135,15 +135,59 @@
       <div class="q-score-badge" id="currentScore" data-testid="text-current-score">100 pts</div>
     </div>
 
+    <div class="host-mini-panel" data-testid="panel-host-video">
+      <div class="host-mini-video">
+        <div class="host-mini-play">&#9654;</div>
+        <div class="host-mini-bar"></div>
+      </div>
+      <div class="host-mini-text">
+        <p class="host-mini-name">Your Host</p>
+        <p class="host-mini-quote">"Let's see if you know this one..."</p>
+      </div>
+    </div>
+
     <div class="q-action-buttons">
-      <button class="q-action-btn" data-testid="button-lifeline">
+      <button class="q-action-btn" data-testid="button-lifeline" id="btnLifeline" onclick="showHint()">
         <span class="q-action-shadow"></span>
-        <span class="q-action-face">&#128161; Ask for Help</span>
+        <span class="q-action-face" id="lifeline-face">&#128161; Ask for Help</span>
       </button>
-      <button class="q-action-btn" data-testid="button-info-panel">
+      <button class="q-action-btn" data-testid="button-info-panel" onclick="showInfoPanel()">
         <span class="q-action-shadow"></span>
         <span class="q-action-face">&#128218; Info Panel</span>
       </button>
+    </div>
+
+    <!-- Hint Popup -->
+    <div class="popup-overlay" id="hintPopup" data-testid="popup-hint">
+      <div class="popup-card popup-hint">
+        <div class="popup-header">
+          <div class="popup-icon hint-icon">&#128161;</div>
+          <h3 class="popup-title hint-title">Hint</h3>
+          <button class="popup-close" onclick="closeHint()" data-testid="button-close-hint">&times;</button>
+        </div>
+        <p class="popup-body">Think about it &mdash; each of the first three options sounds like a real benefit of growing food at home. Could they all be true?</p>
+        <button class="popup-btn hint-btn" onclick="closeHint()" data-testid="button-got-it-hint">GOT IT</button>
+      </div>
+    </div>
+
+    <!-- Info Panel Popup -->
+    <div class="popup-overlay" id="infoPopup" data-testid="popup-info">
+      <div class="popup-card popup-info">
+        <div class="popup-header">
+          <div class="popup-icon info-icon">&#128218;</div>
+          <h3 class="popup-title info-title">Growing Food at Home</h3>
+          <button class="popup-close" onclick="closeInfo()" data-testid="button-close-info">&times;</button>
+        </div>
+        <p class="popup-label">DID YOU KNOW?</p>
+        <ul class="popup-facts">
+          <li data-testid="text-info-fact-0"><span class="fact-check">&#10004;</span> Home gardens can produce vegetables for as little as R2&ndash;R5 per kg, compared to R15&ndash;R40 at shops.</li>
+          <li data-testid="text-info-fact-1"><span class="fact-check">&#10004;</span> Fresh, home-grown produce retains more vitamins and minerals because it goes straight from soil to plate.</li>
+          <li data-testid="text-info-fact-2"><span class="fact-check">&#10004;</span> When you grow your own food, you decide what goes on it &mdash; no harmful pesticides or chemicals.</li>
+          <li data-testid="text-info-fact-3"><span class="fact-check">&#10004;</span> Community and home food gardens are a key strategy recommended by the UN to fight food insecurity.</li>
+          <li data-testid="text-info-fact-4"><span class="fact-check">&#10004;</span> South Africa has over 13 million people who are food insecure &mdash; home gardens can make a real difference.</li>
+        </ul>
+        <button class="popup-btn info-btn" onclick="closeInfo()" data-testid="button-close-info-panel">CLOSE</button>
+      </div>
     </div>
 
     <div class="q-value-box">

@@ -3,6 +3,29 @@ const maxScoreAfterQ1 = 110;
 const correctAnswer = 3;
 let selectedOption = null;
 let answerSubmitted = false;
+let hintUsed = false;
+
+function showHint() {
+  if (hintUsed) return;
+  hintUsed = true;
+  document.getElementById('hintPopup').classList.add('active');
+  var btn = document.getElementById('btnLifeline');
+  btn.classList.add('used');
+  btn.disabled = true;
+  document.getElementById('lifeline-face').textContent = '💡 Hint Used';
+}
+
+function closeHint() {
+  document.getElementById('hintPopup').classList.remove('active');
+}
+
+function showInfoPanel() {
+  document.getElementById('infoPopup').classList.add('active');
+}
+
+function closeInfo() {
+  document.getElementById('infoPopup').classList.remove('active');
+}
 
 function updateScoreBadge() {
   var badge = document.getElementById("currentScore");
@@ -32,6 +55,11 @@ function startGame() {
   score = 100;
   selectedOption = null;
   answerSubmitted = false;
+  hintUsed = false;
+  var btn = document.getElementById('btnLifeline');
+  if (btn) { btn.classList.remove('used'); btn.disabled = false; }
+  var face = document.getElementById('lifeline-face');
+  if (face) face.textContent = '💡 Ask for Help';
   updateScoreBadge();
   showScreen("introVideo");
 }
