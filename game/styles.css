@@ -1399,72 +1399,36 @@ video {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ── Synced Options (Question Video) ── */
-.sync-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-.sync-option {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  border: 2px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.05);
-  border-radius: 1rem;
-  padding: 0.75rem;
-  transition: all 0.3s ease;
-  color: rgba(255,255,255,0.95);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.sync-option.highlighted {
+/* ── Video Sync Highlighting on Answer Buttons ── */
+.q-option.sync-highlighted .q-option-face {
   border-color: rgba(255,212,59,0.6);
   background: rgba(255,212,59,0.15);
   transform: scale(1.02);
 }
 
-.sync-option.correct {
+.q-option.sync-correct .q-option-face {
   border-color: rgba(102,187,106,0.6);
   background: rgba(102,187,106,0.2);
 }
 
-.sync-option.wrong {
+.q-option.sync-wrong .q-option-face {
   border-color: rgba(239,83,80,0.4);
   background: rgba(239,83,80,0.1);
 }
 
-.sync-letter {
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 2px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.875rem;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-  color: rgba(255,255,255,0.8);
-}
-
-.sync-letter.highlighted {
+.q-letter-badge.sync-highlighted {
   background: #ffd43b;
   border-color: #f9a825;
   color: #fff;
 }
 
-.sync-letter.correct {
+.q-letter-badge.sync-correct {
   background: #66bb6a;
   border-color: #2e7d32;
   color: #fff;
 }
 
-.sync-letter.wrong {
+.q-letter-badge.sync-wrong {
   background: rgba(239,83,80,0.6);
   border-color: #c62828;
   color: #fff;

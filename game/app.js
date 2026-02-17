@@ -83,17 +83,45 @@ function startGame() {
 }
 
 function showQuestion() {
-  showScreen("question1");
+  syncRevealed = false;
   selectedOption = null;
   answerSubmitted = false;
   updateScoreBadge();
+  showScreen("question1");
   document.getElementById("feedback").textContent = "";
   document.getElementById("feedback").className = "";
   document.getElementById("submitBtn").disabled = true;
   for (var i = 0; i < 4; i++) {
     var opt = document.getElementById("opt-" + i);
-    opt.classList.remove("selected");
+    opt.classList.remove("selected", "sync-highlighted", "sync-correct", "sync-wrong");
     opt.disabled = false;
+    var letter = document.getElementById("letter-" + i);
+    if (letter) letter.classList.remove("sync-highlighted", "sync-correct", "sync-wrong");
+  }
+  var vid = document.getElementById('questionVideo');
+  var btn = document.getElementById('unmuteQVideoBtn');
+  if (vid) { vid.muted = true; vid.currentTime = 0; vid.play(); }
+  if (btn) btn.style.display = '';
+  if (vid) {
+    vid.ontimeupdate = function() {
+      if (answerSubmitted) return;
+      var t = vid.currentTime;
+      var active = null;
+      for (var i = syncTimestamps.length - 1; i >= 0; i--) {
+        if (t >= syncTimestamps[i]) { active = i; break; }
+      }
+      highlightAnswerOption(active);
+      if (t >= revealCorrectAt && !syncRevealed) {
+        syncRevealed = true;
+        revealAnswerCorrect();
+      }
+    };
+    vid.onended = function() {
+      if (!syncRevealed) {
+        syncRevealed = true;
+        revealAnswerCorrect();
+      }
+    };
   }
 }
 
@@ -102,6 +130,9 @@ function selectAnswer(index) {
   selectedOption = index;
   for (var i = 0; i < 4; i++) {
     var opt = document.getElementById("opt-" + i);
+    opt.classList.remove("sync-highlighted", "sync-correct", "sync-wrong");
+    var letter = document.getElementById("letter-" + i);
+    if (letter) letter.classList.remove("sync-highlighted", "sync-correct", "sync-wrong");
     if (i === index) {
       opt.classList.add("selected");
     } else {
@@ -140,35 +171,6 @@ var syncTimestamps = [3, 6, 9, 12];
 var revealCorrectAt = 15;
 var syncRevealed = false;
 
-function showQuestionVideo() {
-  syncRevealed = false;
-  resetSyncOptions();
-  showScreen("questionVideoScreen");
-  var vid = document.getElementById('questionVideo');
-  var btn = document.getElementById('unmuteQVideoBtn');
-  if (vid) { vid.muted = true; vid.currentTime = 0; vid.play(); }
-  if (btn) btn.style.display = '';
-  if (vid) {
-    vid.ontimeupdate = function() {
-      var t = vid.currentTime;
-      var active = null;
-      for (var i = syncTimestamps.length - 1; i >= 0; i--) {
-        if (t >= syncTimestamps[i]) { active = i; break; }
-      }
-      highlightSyncOption(active);
-      if (t >= revealCorrectAt && !syncRevealed) {
-        syncRevealed = true;
-        revealSyncCorrect();
-      }
-    };
-    vid.onended = function() {
-      syncRevealed = true;
-      revealSyncCorrect();
-      setTimeout(function() { showQuestion(); }, 2000);
-    };
-  }
-}
-
 function unmuteQuestionVideo() {
   var vid = document.getElementById('questionVideo');
   var btn = document.getElementById('unmuteQVideoBtn');
@@ -180,43 +182,38 @@ function unmuteQuestionVideo() {
   }
 }
 
-function resetSyncOptions() {
+function highlightAnswerOption(activeIndex) {
+  if (answerSubmitted) return;
   for (var i = 0; i < 4; i++) {
-    var opt = document.getElementById('sync-opt-' + i);
-    var letter = document.getElementById('sync-letter-' + i);
-    if (opt) { opt.className = 'sync-option'; }
-    if (letter) { letter.className = 'sync-letter'; }
-  }
-}
-
-function highlightSyncOption(activeIndex) {
-  for (var i = 0; i < 4; i++) {
-    var opt = document.getElementById('sync-opt-' + i);
-    var letter = document.getElementById('sync-letter-' + i);
+    var opt = document.getElementById('opt-' + i);
+    var letter = document.getElementById('letter-' + i);
     if (!opt || !letter) continue;
     if (!syncRevealed) {
       if (i === activeIndex) {
-        opt.className = 'sync-option highlighted';
-        letter.className = 'sync-letter highlighted';
+        opt.classList.add('sync-highlighted');
+        letter.classList.add('sync-highlighted');
       } else {
-        opt.className = 'sync-option';
-        letter.className = 'sync-letter';
+        opt.classList.remove('sync-highlighted');
+        letter.classList.remove('sync-highlighted');
       }
     }
   }
 }
 
-function revealSyncCorrect() {
+function revealAnswerCorrect() {
+  if (answerSubmitted) return;
   for (var i = 0; i < 4; i++) {
-    var opt = document.getElementById('sync-opt-' + i);
-    var letter = document.getElementById('sync-letter-' + i);
+    var opt = document.getElementById('opt-' + i);
+    var letter = document.getElementById('letter-' + i);
     if (!opt || !letter) continue;
+    opt.classList.remove('sync-highlighted');
+    letter.classList.remove('sync-highlighted');
     if (i === correctAnswer) {
-      opt.className = 'sync-option correct';
-      letter.className = 'sync-letter correct';
+      opt.classList.add('sync-correct');
+      letter.classList.add('sync-correct');
     } else {
-      opt.className = 'sync-option wrong';
-      letter.className = 'sync-letter wrong';
+      opt.classList.add('sync-wrong');
+      letter.classList.add('sync-wrong');
     }
   }
 }

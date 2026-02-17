@@ -113,7 +113,7 @@
     </div>
 
     <div class="african-btn-wrap">
-      <button class="african-btn" onclick="showQuestionVideo()" data-testid="button-start-game">
+      <button class="african-btn" onclick="showQuestion()" data-testid="button-start-game">
         <span class="african-btn-shadow primary"></span>
         <span class="african-btn-face primary">START GAME</span>
       </button>
@@ -122,52 +122,6 @@
       <button class="african-btn" onclick="showQuestion()" data-testid="button-skip-video">
         <span class="african-btn-shadow skip"></span>
         <span class="african-btn-face skip">SKIP VIDEO</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Question Video Screen -->
-  <section id="questionVideoScreen" class="screen">
-    <button class="back-link-light" onclick="showScreen('landing')" data-testid="button-back-home-qvideo">&larr; Back to Home</button>
-    <h2 class="rules-title" data-testid="text-qvideo-title">Listen to Your Host</h2>
-
-    <div class="about-video-container qvideo-container" data-testid="panel-question-video" style="border-color: rgba(47,158,68,0.4);">
-      <video id="questionVideo" autoplay muted playsinline class="about-video-player" data-testid="video-question-player" style="min-height:200px; background:#000;"></video>
-      <button class="unmute-overlay" id="unmuteQVideoBtn" onclick="unmuteQuestionVideo()" data-testid="button-unmute-question-video">
-        <div class="unmute-inner">
-          <div class="unmute-circle">&#128266;</div>
-          <span class="unmute-text">Tap to Listen</span>
-        </div>
-      </button>
-    </div>
-
-    <div class="q-text-box" style="margin-bottom:0.75rem;">
-      <p data-testid="text-question-video">What are some of the biggest reasons growing food at home helps fight hunger?</p>
-    </div>
-
-    <div class="sync-options">
-      <div class="sync-option" id="sync-opt-0" data-testid="sync-option-0">
-        <div class="sync-letter" id="sync-letter-0">A</div>
-        <span>It can be very cheap to grow food</span>
-      </div>
-      <div class="sync-option" id="sync-opt-1" data-testid="sync-option-1">
-        <div class="sync-letter" id="sync-letter-1">B</div>
-        <span>Higher nutritional value</span>
-      </div>
-      <div class="sync-option" id="sync-opt-2" data-testid="sync-option-2">
-        <div class="sync-letter" id="sync-letter-2">C</div>
-        <span>Control chemical use</span>
-      </div>
-      <div class="sync-option" id="sync-opt-3" data-testid="sync-option-3">
-        <div class="sync-letter" id="sync-letter-3">D</div>
-        <span>All of the above</span>
-      </div>
-    </div>
-
-    <div class="african-btn-wrap" style="margin-top:1rem;">
-      <button class="african-btn" onclick="showQuestion()" data-testid="button-skip-question-video">
-        <span class="african-btn-shadow skip"></span>
-        <span class="african-btn-face skip">SKIP TO ANSWER</span>
       </button>
     </div>
   </section>
@@ -229,15 +183,14 @@
       <div class="q-score-badge" id="currentScore" data-testid="text-current-score">100 pts</div>
     </div>
 
-    <div class="host-mini-panel" data-testid="panel-host-video">
-      <div class="host-mini-video">
-        <div class="host-mini-play">&#9654;</div>
-        <div class="host-mini-bar"></div>
-      </div>
-      <div class="host-mini-text">
-        <p class="host-mini-name">Your Host</p>
-        <p class="host-mini-quote">"Let's see if you know this one..."</p>
-      </div>
+    <div class="about-video-container qvideo-container" data-testid="panel-host-video" style="border-color: rgba(47,158,68,0.4); margin-bottom:0.75rem;">
+      <video id="questionVideo" autoplay muted playsinline class="about-video-player" data-testid="video-question-player" style="min-height:160px; background:#000;"></video>
+      <button class="unmute-overlay" id="unmuteQVideoBtn" onclick="unmuteQuestionVideo()" data-testid="button-unmute-question-video">
+        <div class="unmute-inner">
+          <div class="unmute-circle">&#128266;</div>
+          <span class="unmute-text">Tap to Listen</span>
+        </div>
+      </button>
     </div>
 
     <div class="q-action-buttons">
