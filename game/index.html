@@ -50,7 +50,7 @@
       </button>
     </div>
     <div class="african-btn-wrap">
-      <button class="african-btn" onclick="showScreen('about')" data-testid="nav-about">
+      <button class="african-btn" onclick="resetAboutVideo(); showScreen('about')" data-testid="nav-about">
         <span class="african-btn-shadow secondary"></span>
         <span class="african-btn-face secondary">ABOUT US</span>
       </button>
@@ -113,7 +113,7 @@
     </div>
 
     <div class="african-btn-wrap">
-      <button class="african-btn" onclick="showQuestion()" data-testid="button-start-game">
+      <button class="african-btn" onclick="showQuestionVideo()" data-testid="button-start-game">
         <span class="african-btn-shadow primary"></span>
         <span class="african-btn-face primary">START GAME</span>
       </button>
@@ -123,6 +123,100 @@
         <span class="african-btn-shadow skip"></span>
         <span class="african-btn-face skip">SKIP VIDEO</span>
       </button>
+    </div>
+  </section>
+
+  <!-- Question Video Screen -->
+  <section id="questionVideoScreen" class="screen">
+    <button class="back-link-light" onclick="showScreen('landing')" data-testid="button-back-home-qvideo">&larr; Back to Home</button>
+    <h2 class="rules-title" data-testid="text-qvideo-title">Listen to Your Host</h2>
+
+    <div class="about-video-container qvideo-container" data-testid="panel-question-video" style="border-color: rgba(47,158,68,0.4);">
+      <video id="questionVideo" autoplay muted playsinline class="about-video-player" data-testid="video-question-player" style="min-height:200px; background:#000;"></video>
+      <button class="unmute-overlay" id="unmuteQVideoBtn" onclick="unmuteQuestionVideo()" data-testid="button-unmute-question-video">
+        <div class="unmute-inner">
+          <div class="unmute-circle">&#128266;</div>
+          <span class="unmute-text">Tap to Listen</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="q-text-box" style="margin-bottom:0.75rem;">
+      <p data-testid="text-question-video">What are some of the biggest reasons growing food at home helps fight hunger?</p>
+    </div>
+
+    <div class="sync-options">
+      <div class="sync-option" id="sync-opt-0" data-testid="sync-option-0">
+        <div class="sync-letter" id="sync-letter-0">A</div>
+        <span>It can be very cheap to grow food</span>
+      </div>
+      <div class="sync-option" id="sync-opt-1" data-testid="sync-option-1">
+        <div class="sync-letter" id="sync-letter-1">B</div>
+        <span>Higher nutritional value</span>
+      </div>
+      <div class="sync-option" id="sync-opt-2" data-testid="sync-option-2">
+        <div class="sync-letter" id="sync-letter-2">C</div>
+        <span>Control chemical use</span>
+      </div>
+      <div class="sync-option" id="sync-opt-3" data-testid="sync-option-3">
+        <div class="sync-letter" id="sync-letter-3">D</div>
+        <span>All of the above</span>
+      </div>
+    </div>
+
+    <div class="african-btn-wrap" style="margin-top:1rem;">
+      <button class="african-btn" onclick="showQuestion()" data-testid="button-skip-question-video">
+        <span class="african-btn-shadow skip"></span>
+        <span class="african-btn-face skip">SKIP TO ANSWER</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Correct Answer Video Screen -->
+  <section id="correctVideoScreen" class="screen">
+    <div class="video-feedback-screen">
+      <div class="feedback-badge correct-badge">
+        <span>&#10003;</span> Correct!
+      </div>
+      <p class="feedback-sub">+10 points earned</p>
+      <div class="about-video-container" style="border-color: rgba(102,187,106,0.4);" data-testid="panel-correct-video">
+        <div class="video-placeholder-inner correct-placeholder">
+          <div class="placeholder-play correct-play">&#9654;</div>
+          <p class="placeholder-label">[CORRECT ANSWER VIDEO]</p>
+          <p class="placeholder-sub">Video placeholder</p>
+        </div>
+        <p class="about-video-label" style="color:rgba(102,187,106,0.7);">Well done! Moving to results...</p>
+      </div>
+      <div class="african-btn-wrap">
+        <button class="african-btn" onclick="showScore()" data-testid="button-continue-to-result">
+          <span class="african-btn-shadow primary"></span>
+          <span class="african-btn-face primary">SEE YOUR RESULTS</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wrong Answer Video Screen -->
+  <section id="wrongVideoScreen" class="screen">
+    <div class="video-feedback-screen">
+      <div class="feedback-badge wrong-badge">
+        <span>&times;</span> Not Quite!
+      </div>
+      <p class="feedback-sub">-15 points</p>
+      <div class="about-video-container" style="border-color: rgba(239,83,80,0.4);" data-testid="panel-wrong-video">
+        <div class="video-placeholder-inner wrong-placeholder">
+          <div class="placeholder-play wrong-play">&#9654;</div>
+          <p class="placeholder-label">[WRONG ANSWER VIDEO]</p>
+          <p class="placeholder-sub">Video placeholder</p>
+        </div>
+        <p class="about-video-label" style="color:rgba(239,83,80,0.7);">Don't give up! Try again...</p>
+      </div>
+      <div class="african-btn-wrap">
+        <button class="african-btn" onclick="showQuestion()" data-testid="button-try-again">
+          <span class="african-btn-shadow primary"></span>
+          <span class="african-btn-face primary">TRY AGAIN</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -293,12 +387,15 @@
   <section id="about" class="screen">
     <button class="back-link" onclick="showScreen('landing')" data-testid="button-back-home-about">&larr; Back to Home</button>
     <h2 data-testid="text-about-heading">About Us</h2>
-    <div class="rules-video-placeholder" data-testid="video-about">
-      <div class="rules-play-circle">&#9654;</div>
-      <p class="rules-video-label">[EMBEDDED VIDEO]</p>
-      <p class="rules-video-sub">About Us Narration</p>
-      <p class="rules-video-note">Video coming soon</p>
-      <div class="rules-video-bar"></div>
+    <div class="about-video-container" data-testid="video-about">
+      <video id="aboutVideo" src="about-us-draft.mp4" autoplay muted playsinline class="about-video-player" data-testid="video-about-player"></video>
+      <button class="unmute-overlay" id="unmuteBtn" onclick="unmuteAboutVideo()" data-testid="button-unmute-video">
+        <div class="unmute-inner">
+          <div class="unmute-circle">&#128266;</div>
+          <span class="unmute-text">Tap to Listen</span>
+        </div>
+      </button>
+      <p class="about-video-label">About Us &mdash; Draft Preview</p>
     </div>
 
     <p class="collaborators-heading promoters-heading">Project Promoters</p>

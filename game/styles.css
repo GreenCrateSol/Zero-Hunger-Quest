@@ -1337,3 +1337,232 @@ video {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* ── About Us Video ── */
+.about-video-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 1rem auto;
+  background: rgba(0,0,0,0.3);
+  border: 2px solid rgba(47,158,68,0.4);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.unmute-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.unmute-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.unmute-circle {
+  width: 4rem;
+  height: 4rem;
+  background: rgba(47,158,68,0.4);
+  border: 2px solid rgba(47,158,68,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.unmute-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Synced Options (Question Video) ── */
+.sync-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.sync-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+  color: rgba(255,255,255,0.95);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.sync-option.highlighted {
+  border-color: rgba(255,212,59,0.6);
+  background: rgba(255,212,59,0.15);
+  transform: scale(1.02);
+}
+
+.sync-option.correct {
+  border-color: rgba(102,187,106,0.6);
+  background: rgba(102,187,106,0.2);
+}
+
+.sync-option.wrong {
+  border-color: rgba(239,83,80,0.4);
+  background: rgba(239,83,80,0.1);
+}
+
+.sync-letter {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  color: rgba(255,255,255,0.8);
+}
+
+.sync-letter.highlighted {
+  background: #ffd43b;
+  border-color: #f9a825;
+  color: #fff;
+}
+
+.sync-letter.correct {
+  background: #66bb6a;
+  border-color: #2e7d32;
+  color: #fff;
+}
+
+.sync-letter.wrong {
+  background: rgba(239,83,80,0.6);
+  border-color: #c62828;
+  color: #fff;
+}
+
+/* ── Video Feedback Screens ── */
+.video-feedback-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 1rem;
+}
+
+.feedback-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  font-weight: 800;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.correct-badge {
+  background: rgba(102,187,106,0.2);
+  border: 2px solid rgba(102,187,106,0.4);
+  color: #66bb6a;
+}
+
+.wrong-badge {
+  background: rgba(239,83,80,0.2);
+  border: 2px solid rgba(239,83,80,0.4);
+  color: #ef5350;
+}
+
+.feedback-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+}
+
+.video-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  background: #000;
+  padding: 1.5rem;
+}
+
+.placeholder-play {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.correct-play {
+  background: rgba(102,187,106,0.3);
+  border: 2px solid rgba(102,187,106,0.5);
+  color: #66bb6a;
+}
+
+.wrong-play {
+  background: rgba(239,83,80,0.3);
+  border: 2px solid rgba(239,83,80,0.5);
+  color: #ef5350;
+}
+
+.placeholder-label {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.25rem;
+}
+
+.placeholder-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+}
+
+.about-video-player {
+  width: 100%;
+  display: block;
+  border-radius: 0.875rem;
+}
+
+.about-video-label {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  padding: 0.5rem 0;
+}

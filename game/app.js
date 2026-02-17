@@ -19,6 +19,24 @@ function closeHint() {
   document.getElementById('hintPopup').classList.remove('active');
 }
 
+function resetAboutVideo() {
+  var vid = document.getElementById('aboutVideo');
+  var btn = document.getElementById('unmuteBtn');
+  if (vid) { vid.muted = true; vid.currentTime = 0; vid.play(); }
+  if (btn) btn.style.display = '';
+}
+
+function unmuteAboutVideo() {
+  var vid = document.getElementById('aboutVideo');
+  var btn = document.getElementById('unmuteBtn');
+  if (vid && btn) {
+    vid.muted = false;
+    vid.currentTime = 0;
+    vid.play();
+    btn.style.display = 'none';
+  }
+}
+
 function showInfoPanel() {
   document.getElementById('infoPopup').classList.add('active');
 }
@@ -108,24 +126,98 @@ function submitAnswer() {
     updateScoreBadge();
     feedback.textContent = "Correct! You earned 10 points.";
     feedback.className = "correct";
-    setTimeout(showScore, 1200);
+    setTimeout(function() { showScreen("correctVideoScreen"); }, 1200);
   } else {
     score -= 15;
     updateScoreBadge();
     feedback.textContent = "Not quite \u2014 try again!";
     feedback.className = "wrong";
-    setTimeout(function() {
-      answerSubmitted = false;
-      selectedOption = null;
-      feedback.textContent = "";
-      feedback.className = "";
-      document.getElementById("submitBtn").disabled = true;
-      for (var i = 0; i < 4; i++) {
-        var opt = document.getElementById("opt-" + i);
-        opt.classList.remove("selected");
-        opt.disabled = false;
+    setTimeout(function() { showScreen("wrongVideoScreen"); }, 1200);
+  }
+}
+
+var syncTimestamps = [3, 6, 9, 12];
+var revealCorrectAt = 15;
+var syncRevealed = false;
+
+function showQuestionVideo() {
+  syncRevealed = false;
+  resetSyncOptions();
+  showScreen("questionVideoScreen");
+  var vid = document.getElementById('questionVideo');
+  var btn = document.getElementById('unmuteQVideoBtn');
+  if (vid) { vid.muted = true; vid.currentTime = 0; vid.play(); }
+  if (btn) btn.style.display = '';
+  if (vid) {
+    vid.ontimeupdate = function() {
+      var t = vid.currentTime;
+      var active = null;
+      for (var i = syncTimestamps.length - 1; i >= 0; i--) {
+        if (t >= syncTimestamps[i]) { active = i; break; }
       }
-    }, 1200);
+      highlightSyncOption(active);
+      if (t >= revealCorrectAt && !syncRevealed) {
+        syncRevealed = true;
+        revealSyncCorrect();
+      }
+    };
+    vid.onended = function() {
+      syncRevealed = true;
+      revealSyncCorrect();
+      setTimeout(function() { showQuestion(); }, 2000);
+    };
+  }
+}
+
+function unmuteQuestionVideo() {
+  var vid = document.getElementById('questionVideo');
+  var btn = document.getElementById('unmuteQVideoBtn');
+  if (vid && btn) {
+    vid.muted = false;
+    vid.currentTime = 0;
+    vid.play();
+    btn.style.display = 'none';
+  }
+}
+
+function resetSyncOptions() {
+  for (var i = 0; i < 4; i++) {
+    var opt = document.getElementById('sync-opt-' + i);
+    var letter = document.getElementById('sync-letter-' + i);
+    if (opt) { opt.className = 'sync-option'; }
+    if (letter) { letter.className = 'sync-letter'; }
+  }
+}
+
+function highlightSyncOption(activeIndex) {
+  for (var i = 0; i < 4; i++) {
+    var opt = document.getElementById('sync-opt-' + i);
+    var letter = document.getElementById('sync-letter-' + i);
+    if (!opt || !letter) continue;
+    if (!syncRevealed) {
+      if (i === activeIndex) {
+        opt.className = 'sync-option highlighted';
+        letter.className = 'sync-letter highlighted';
+      } else {
+        opt.className = 'sync-option';
+        letter.className = 'sync-letter';
+      }
+    }
+  }
+}
+
+function revealSyncCorrect() {
+  for (var i = 0; i < 4; i++) {
+    var opt = document.getElementById('sync-opt-' + i);
+    var letter = document.getElementById('sync-letter-' + i);
+    if (!opt || !letter) continue;
+    if (i === correctAnswer) {
+      opt.className = 'sync-option correct';
+      letter.className = 'sync-letter correct';
+    } else {
+      opt.className = 'sync-option wrong';
+      letter.className = 'sync-letter wrong';
+    }
   }
 }
 
